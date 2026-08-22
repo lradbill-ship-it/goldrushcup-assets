@@ -1,0 +1,1697 @@
+/* GOLD RUSH CUP - Super custom CSS
+  - full note: docs/CSS_NOTES.md#n34 */
+
+:root{
+  --grc-ink:#1E1109;      /* deepest brown - page ground   */
+  --grc-surface:#2A1A0D;  /* raised surface                */
+  --grc-brown:#4A2609;    /* brand brown (logo bear)       */
+  --grc-gold:#C6A24A;     /* brand gold (logo mountains)   */
+  --grc-gold-lt:#E0CE72;  /* gold highlight                */
+  --grc-cream:#F6EFE6;    /* brand cream - body text       */
+  --grc-sand:#B9A489;     /* warm secondary text           */
+  --grc-rule:rgba(198,162,74,.26);
+  --grc-rule-hi:rgba(198,162,74,.55);   /* mockup --rule-hi (table header) */
+  /* the mockup's `--ui` - the system stack, verbatim. Lane's call (S11):
+  - full note: docs/CSS_NOTES.md#n149 */
+  --grc-ui:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --grc-display:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,serif;
+  /* -- swing tempo (S18) --
+  - full note: docs/CSS_NOTES.md#n78 */
+  --grc-tempo:cubic-bezier(.25,1,.4,1);
+  --grc-tempo-drop:cubic-bezier(.2,.9,.3,1.35);
+}
+
+/* -- ground -- */
+body, .super-root, .super-content-wrapper{
+  background:var(--grc-ink) !important;
+  color:var(--grc-cream) !important;
+}
+.notion-root, .super-content{ color:var(--grc-cream) !important; }
+
+/* (!) S13 - THE TYPE SCALE REACHED THE CONTENT, NEVER THE CHROME. S11 set the
+  - full note: docs/CSS_NOTES.md#n49 */
+body{
+  font-family:var(--grc-ui);
+  font-size:17px;
+  line-height:1.65;
+}
+
+/* -- navbar -- */
+.super-navbar{
+  background:rgba(30,17,9,.92) !important;
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--grc-rule) !important;
+  /* (!) S13: background but no COLOUR, so any navbar text not styled by hand
+  - full note: docs/CSS_NOTES.md#n126 */
+  color:var(--grc-cream) !important;
+}
+.super-navbar__logo-text{
+  font-family:var(--grc-display) !important;
+  color:var(--grc-cream) !important;
+  letter-spacing:.02em;
+  /* (!) S16 - the family, colour and tracking were set here and the SIZE and
+  - full note: docs/CSS_NOTES.md#n50 */
+  font-size:17px !important;
+  font-weight:400 !important;
+}
+.super-navbar__item-list a{
+  color:var(--grc-sand) !important;
+  /* mockup `.nav-links a`: 12.5px at full opacity. Super ships its links at
+  - full note: docs/CSS_NOTES.md#n127 */
+  font-size:12.5px; letter-spacing:.09em; text-transform:uppercase;
+  opacity:1 !important;
+  border-bottom:1px solid transparent; transition:color .18s var(--grc-tempo),border-color .18s var(--grc-tempo);
+}
+.super-navbar__item-list a:hover{
+  color:var(--grc-gold) !important; border-bottom-color:var(--grc-gold);
+}
+/* (!) S17 - GALLERY FELL OUT OF THE NAVBAR ON MOST LAPTOPS, AND HAD SINCE THE
+  - full note: docs/CSS_NOTES.md#n76 */
+.super-navbar__content{ grid-template-columns:auto 1fr auto !important; }
+@media (max-width:1120px){
+  .super-navbar__item-list a{
+    padding-left:8px !important; padding-right:8px !important;
+    letter-spacing:.06em !important;
+  }
+}
+.super-navbar__search svg{ stroke:var(--grc-sand); }
+/* (!) S16 - THE MOBILE MENU ARRIVED WHITE, FULL-SCREEN, ON A #1E1109 SITE.
+  - full note: docs/CSS_NOTES.md#n38 */
+.super-navbar__menu{ background:var(--grc-ink) !important; }
+.super-navigation-menu__items a{
+  color:var(--grc-sand) !important;
+  font-size:14px !important; letter-spacing:.09em; text-transform:uppercase;
+  font-family:var(--grc-ui);
+}
+.super-navigation-menu__items a:hover,
+.super-navigation-menu__items a:active{ color:var(--grc-gold) !important; }
+
+/* -- page title -- */
+.notion-header__title, .notion-page__title{
+  font-family:var(--grc-display) !important;
+  color:var(--grc-cream) !important;
+  letter-spacing:-.015em;
+}
+.notion-header__title{
+  font-size:clamp(38px,6.4vw,74px) !important;
+  /* mockup `.phead h1`: weight 600 at line-height 1.1. Super ships the title
+  - full note: docs/CSS_NOTES.md#n135 */
+  font-weight:600 !important;
+  line-height:1.1 !important;
+}
+
+/* -- headings -- */
+.notion-heading{
+  font-family:var(--grc-display) !important;
+  color:var(--grc-cream) !important;
+  letter-spacing:-.01em;
+}
+.notion-heading__anchor{ color:var(--grc-gold) !important; }
+
+/* -- body copy -- */
+.notion-text, .notion-text__content, .notion-semantic-string{
+  color:var(--grc-cream) !important;
+  line-height:1.68;
+}
+.notion-text b, .notion-semantic-string b{ color:var(--grc-gold-lt) !important; }
+.notion-link{
+  color:var(--grc-gold) !important;
+  text-decoration-color:rgba(198,162,74,.45) !important;
+  text-underline-offset:3px;
+}
+.notion-link:hover{ color:var(--grc-gold-lt) !important; }
+
+/* -- the 13 page links -> proper ledger rows -- */
+.notion-page{
+  display:flex !important; align-items:center;
+  border:1px solid var(--grc-rule) !important;
+  border-radius:0 !important;
+  padding:14px 18px !important;
+  margin:0 0 -1px 0 !important;          /* collapse into a ruled stack */
+  background:transparent !important;
+  transition:background .18s var(--grc-tempo),border-color .18s var(--grc-tempo);
+}
+.notion-page:hover{
+  background:rgba(198,162,74,.07) !important;
+  border-color:rgba(198,162,74,.5) !important;
+}
+.notion-page__title{
+  font-size:16px !important;
+  color:var(--grc-cream) !important;
+  border-bottom:0 !important;
+  font-family:var(--grc-display) !important;
+}
+.notion-page:hover .notion-page__title{ color:var(--grc-gold-lt) !important; }
+/* the generic grey file icons cheapen it - replace with a gold marker */
+.notion-page .notion-icon__page{ display:none !important; }
+.notion-page::before{
+  content:""; flex:none; width:5px; height:5px; margin-right:14px;
+  background:var(--grc-gold); transform:rotate(45deg);
+}
+
+/* -- callout (the date banner) -- */
+.notion-callout{
+  background:rgba(198,162,74,.09) !important;
+  border:1px solid var(--grc-rule) !important;
+  border-left:2px solid var(--grc-gold) !important;
+  border-radius:0 !important;
+  padding:18px 22px !important;
+}
+.notion-callout .notion-semantic-string{
+  font-family:var(--grc-display) !important;
+  font-size:19px !important;
+  letter-spacing:.01em;
+  color:var(--grc-cream) !important;
+}
+
+/* -- images -- */
+.notion-image img{
+  border:1px solid var(--grc-rule);
+  border-radius:0 !important;
+}
+
+/* -- column groups -> bordered ledger boxes -- */
+/* Used by the stats row and the three format cards. Notion gives no
+  - full note: docs/CSS_NOTES.md#n131 */
+.notion-column-list{
+  gap:0 !important;
+  border:1px solid var(--grc-rule);
+  margin:30px 0 !important;
+}
+.notion-column{
+  /* the mockup's `.stat{padding:26px 22px}` - ours was 26/24/28, so every
+  - full note: docs/CSS_NOTES.md#n51 */
+  padding:26px 22px !important;
+  border-left:1px solid var(--grc-rule);
+  display:flex; flex-direction:column;
+  /* (!) Notion spaces columns with an inline `margin-inline-start:
+  - full note: docs/CSS_NOTES.md#n44 */
+  margin-inline:0 !important;
+  flex:1 1 0 !important;
+  width:auto !important; max-width:none !important;
+}
+.notion-column:first-child{ border-left:0; }
+
+/* stat cell: heading_1 is the figure, the paragraph after it is the label */
+/* (!) S13 - THE SCOREBOARD VARIANT WAS NEVER PORTED. The mockup has a second
+  - full note: docs/CSS_NOTES.md#n52 */
+.notion-column-list:has(h1.notion-heading):not(:has(> .notion-column:nth-child(3)))
+  .notion-column h1.notion-heading{
+  font-size:clamp(34px,5vw,52px) !important;
+  line-height:1 !important;
+}
+.notion-column h1.notion-heading{
+  /* the mockup's `.stat b` is a <b>, so it renders at the browser's bold 700
+  - full note: docs/CSS_NOTES.md#n136 */
+  font-weight:700 !important;
+  letter-spacing:normal !important;
+  font-size:clamp(30px,4vw,44px) !important;
+  color:var(--grc-gold) !important;
+  font-variant-numeric:tabular-nums;
+  line-height:1 !important;
+  margin:0 0 8px !important;   /* the mockup's `.stat b` */
+}
+/* (!) Notion puts 3px/2px of padding on EVERY paragraph. The mockup puts none
+  - full note: docs/CSS_NOTES.md#n53 */
+.notion-column > .notion-text,
+.notion-text:has(> strong > em),
+.notion-text:has(> em > strong){
+  padding:0 !important;
+  /* (!) EIGHTH instance of the signature failure: Super sets
+  - full note: docs/CSS_NOTES.md#n54 */
+  min-height:0 !important;
+}
+.notion-column h1.notion-heading + .notion-text{
+  font-size:11px !important;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:var(--grc-sand) !important;
+  margin:0 !important;
+}
+
+/* the mockup's `.card p` - 14.5px SAND, not 17px cream. Ours inherited body
+  - full note: docs/CSS_NOTES.md#n113 */
+.notion-column-list:has(h3.notion-heading) > .notion-column > .notion-text{
+  font-size:14.5px !important;
+  color:var(--grc-sand) !important;
+  line-height:1.65;
+}
+/* format card: bold first line is the eyebrow, bold last line is the venue.
+  - full note: docs/CSS_NOTES.md#n18 */
+.notion-column-list:not(:has(h2.notion-heading)) > .notion-column > .notion-text:first-child strong{
+  display:block;
+  font-family:var(--grc-display);
+  font-size:12px; font-weight:400;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--grc-gold) !important;
+}
+.notion-column h3.notion-heading{ margin:10px 0 10px !important; }
+.notion-column > .notion-text:last-child{ margin-top:auto !important; }
+/* (!) S16 - THE FOOT TONE IS ITS OWN COLOUR, NOT `--grc-sand`.
+  - full note: docs/CSS_NOTES.md#n29 */
+.notion-column-list:not(:has(h2.notion-heading)) > .notion-column > .notion-text:last-child strong{
+  display:block; padding-top:15px;
+  border-top:1px solid var(--grc-rule);
+  font-size:11.5px; font-weight:400;
+  letter-spacing:.11em; text-transform:uppercase;
+  color:#978169 !important;
+}
+/* A foot whose text is a LINK - /gallery and /history's "15 photos", the pay
+  - full note: docs/CSS_NOTES.md#n55 */
+.notion-column-list:not(:has(h2.notion-heading)) > .notion-column > .notion-text:last-child strong > a.notion-link{
+  color:inherit !important; text-decoration:none !important;
+}
+.notion-column-list:not(:has(h2.notion-heading)) > .notion-column > .notion-text:last-child strong > a.notion-link:hover{
+  color:var(--grc-gold) !important;
+}
+
+/* -- history ledger table -- */
+/* The mockup's ledger is `table{width:100%}` - it fills the measure. Notion
+  - full note: docs/CSS_NOTES.md#n56 */
+/* (!) S11 - SUPER EMITS NO <th> AND NO <thead>. Every cell of the ledger is a
+  - full note: docs/CSS_NOTES.md#n19 */
+.notion-table__wrapper{ overflow-x:auto; border:1px solid var(--grc-rule); }
+.notion-table{
+  border-collapse:collapse; width:100%; min-width:640px;
+  font-size:15px; border:0;
+}
+/* the mockup gives cells a bottom rule ONLY - Notion draws a full grid */
+.notion-table td{
+  padding:14px 18px; text-align:left;
+  border-left:0 !important; border-right:0 !important; border-top:0 !important;
+  border-bottom:1px solid var(--grc-rule) !important;
+  color:var(--grc-cream) !important;
+  font-variant-numeric:tabular-nums;
+}
+/* (!) Notion paints the light grey on the <tr>, not the cell. Our tint is only
+  - full note: docs/CSS_NOTES.md#n121 */
+.notion-table.col-header tr:first-child{ background:transparent !important; }
+/* the header row - the mockup's `thead th` */
+.notion-table.col-header tr:first-child td{
+  font-size:10.5px !important; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--grc-gold) !important; font-weight:600;
+  /* opaque, not 6% gold: S19 made this row sticky inside Home's scrolling
+  - full note: docs/CSS_NOTES.md#n116 */
+  background:#241608 !important;
+  position:sticky; top:0; z-index:2;
+  border-bottom:1px solid var(--grc-rule-hi) !important;
+}
+/* the next-Cup row - the mockup's `tbody tr:last-child`
+  - full note: docs/CSS_NOTES.md#n20 */
+.notion-table tr:last-child td{ border-bottom:0 !important; }
+.super-content.page__index .notion-table tr:last-child td,
+.super-content.page__history .notion-table tr:last-child td,
+.super-content[class*="page__grc-"] .notion-table tr:last-child td{
+  background:rgba(198,162,74,.09);
+}
+.notion-table.col-header tr:not(:first-child):hover td,
+.notion-table:not(.col-header) tr:hover td{ background:rgba(198,162,74,.05); }
+/* edition numeral column - BODY rows only. Without the `:not(:first-child)`
+  - full note: docs/CSS_NOTES.md#n137 */
+.notion-table.col-header tr:not(:first-child) td:first-child,
+.notion-table:not(.col-header) td:first-child{
+  font-family:var(--grc-display);
+  font-size:19px;
+  color:var(--grc-gold) !important;
+  white-space:nowrap;
+}
+
+/* -- S19 . concept D, the claim map - /grc-viii + /grc-vii --
+  - full note: docs/CSS_NOTES.md#n106 */
+.grc-claim{
+  position:absolute; inset:0; pointer-events:none;
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path 2.6s var(--grc-tempo);
+}
+.grc-claim.in{ clip-path:inset(0 -2% 0 0); }
+.grc-claim svg{ display:block; width:100%; height:100%; }
+.grc-claim path{
+  fill:none; stroke:var(--grc-gold); stroke-width:1;
+  opacity:.26; vector-effect:non-scaling-stroke;
+}
+.grc-claim .spot{ fill:var(--grc-gold); opacity:.4; stroke:none; }
+@media (max-width:768px){
+  /* fewer, fainter rings on a phone - the cover is shorter and the title
+     occupies proportionally more of it */
+  .grc-claim path{ opacity:.2; }
+}
+/* (*) end state must not depend on the animation running */
+@media (prefers-reduced-motion:reduce){
+  .grc-claim{ transition-duration:0s !important; }
+}
+
+/* -- S19 . RULES PLAQUES - /grc-viii and the 3-0 roll call --
+  - full note: docs/CSS_NOTES.md#n109 */
+.super-content:is(.page__grc-viii,.page__the-3-0-club) .notion-root .notion-bulleted-list{
+  display:grid; gap:9px; padding:0 !important; margin:18px 0 !important;
+}
+.super-content:is(.page__grc-viii,.page__the-3-0-club) .notion-root .notion-bulleted-list > li{
+  list-style:none; margin:0 !important; padding:13px 15px;
+  border:1px solid var(--grc-rule); border-left:2px solid var(--grc-gold);
+  background:rgba(198,162,74,.04);
+  transition:border-color .2s var(--grc-tempo), background .2s var(--grc-tempo);
+}
+.super-content:is(.page__grc-viii,.page__the-3-0-club) .notion-root .notion-bulleted-list > li:hover{
+  border-color:var(--grc-rule-hi); background:rgba(198,162,74,.075);
+}
+.super-content.page__grc-viii .notion-root .notion-bulleted-list{
+  grid-template-columns:repeat(auto-fit,minmax(258px,1fr));
+}
+.super-content.page__grc-viii .notion-root .notion-bulleted-list > li > strong{
+  display:block; margin-bottom:3px;
+  font:600 10.5px/1.6 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--grc-gold);
+}
+.super-content.page__the-3-0-club .notion-root .notion-bulleted-list{
+  grid-template-columns:repeat(auto-fit,minmax(172px,1fr));
+}
+.super-content.page__the-3-0-club .notion-root .notion-bulleted-list > li{
+  text-align:center; font-family:var(--grc-display); font-size:17px;
+}
+
+/* -- S19 . the record ledger is a SCROLLING BOX on Home --
+  - full note: docs/CSS_NOTES.md#n108 */
+/* 17rem = 272px, MEASURED not guessed: the header row is 54px and each data row
+  - full note: docs/CSS_NOTES.md#n117 */
+.super-content.page__index .notion-table__wrapper{ max-height:17rem; overflow-y:auto; }
+
+/* -- S19 . the record ledger, collapsed --
+  - full note: docs/CSS_NOTES.md#n102 */
+.super-content:is(.page__index,.page__history,[class*="page__grc-"]) .notion-table td{ padding:11px 16px; }
+
+/* -- the travelling Cup (S18, concept C) --
+  - full note: docs/CSS_NOTES.md#n77 */
+.grc-map{ margin:36px 0 4px; }
+.grc-map svg{ display:block; width:100%; height:auto; overflow:visible; }
+.grc-map .land{
+  fill:rgba(198,162,74,.055); stroke:rgba(198,162,74,.30); stroke-width:1.4;
+  stroke-linejoin:round;
+}
+/* The wipe is `clip-path:inset()` ON THE ROUTE ITSELF. The first build animated
+  - full note: docs/CSS_NOTES.md#n86 */
+.grc-map .route{
+  fill:none; stroke:var(--grc-gold); stroke-width:2.2;
+  stroke-dasharray:7 7; stroke-linecap:round;
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path 3.4s var(--grc-tempo);
+}
+.grc-map.in .route{ clip-path:inset(0 -2% 0 0); }
+.grc-map .stake{
+  opacity:0; transform:translateY(-9px);
+  /* opacity on the plain curve, never on `-drop` - that one peaks at 111.9% */
+  transition:opacity .5s var(--grc-tempo) calc(.9s + var(--d) * .42s),
+             transform .55s var(--grc-tempo-drop) calc(.9s + var(--d) * .42s);
+}
+.grc-map.in .stake{ opacity:1; transform:none; }
+.grc-map .pin{ fill:var(--grc-gold-lt); }
+/* (!) These are USER UNITS, not screen px - the SVG scales to its container, so
+  - full note: docs/CSS_NOTES.md#n80 */
+.grc-map .cups{ fill:var(--grc-cream); font-family:var(--grc-display); font-size:21px; }
+.grc-map .place{
+  fill:var(--grc-sand); font-size:14px; letter-spacing:.14em; text-transform:uppercase;
+}
+.grc-map__leg{
+  margin:2px 0 0; color:var(--grc-sand) !important;
+  font-size:11.5px; letter-spacing:.11em; text-transform:uppercase; text-align:center;
+  opacity:0; transition:opacity .6s var(--grc-tempo) 3.1s;
+}
+.grc-map.in .grc-map__leg{ opacity:1; }
+/* At the site's mobile breakpoint the measure is ~335px, i.e. 0.35x - a 21-unit
+  - full note: docs/CSS_NOTES.md#n81 */
+@media (max-width:768px){
+  .grc-map .cups{ font-size:38px; }
+  .grc-map .place{ display:none; }
+  .grc-map{ margin:26px 0 4px; }
+  /* (!) The numerals grow 1.8x while the geometry does not, so the three western
+  - full note: docs/CSS_NOTES.md#n87 */
+  .grc-map .stake:nth-of-type(1) .cups{ text-anchor:middle; }
+}
+/* (*) end state must not depend on the animation running */
+@media (prefers-reduced-motion:reduce){
+  .grc-map .route, .grc-map .stake, .grc-map__leg{
+    transition-duration:0s !important; transition-delay:0s !important;
+  }
+}
+.grc-map.no-anim .route, .grc-map.no-anim .stake, .grc-map.no-anim .grc-map__leg{
+  transition:none !important;
+}
+
+/* -- Home: hide the auto-listed child-page stack --
+  - full note: docs/CSS_NOTES.md#n57 */
+.super-content.page__index .notion-root > a.notion-page{ display:none !important; }
+
+/* -- section eyebrows and CTAs (S11) --
+   Lane: "I am still seeing a lot of text, all pages, that is not formatted
+   and/or stylized as it is in the mockups. This includes placements."
+  - full note: docs/CSS_NOTES.md#n1 */
+.notion-text:has(> strong > em),
+.notion-text:has(> em > strong){
+  display:flex !important; align-items:center; gap:14px;
+  font-size:11px !important; font-weight:600 !important;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:var(--grc-gold) !important;
+  margin:0 0 16px !important;
+}
+/* the hairline that runs out from the words to the measure's right edge */
+.notion-text:has(> strong > em)::after,
+.notion-text:has(> em > strong)::after{
+  content:""; flex:1; height:1px; background:var(--grc-rule);
+}
+/* the annotations are a HOOK, not styling - neutralise them, exactly as the
+  - full note: docs/CSS_NOTES.md#n150 */
+.notion-text:has(> strong > em) strong,
+.notion-text:has(> strong > em) em,
+.notion-text:has(> em > strong) strong,
+.notion-text:has(> em > strong) em{
+  font-weight:inherit !important; font-style:normal !important;
+  color:inherit !important; white-space:nowrap;
+}
+/* an eyebrow sits directly on its heading - kill the heading's top margin */
+.notion-text:has(> strong > em) + .notion-heading,
+.notion-text:has(> em > strong) + .notion-heading{
+  margin-top:0 !important;
+}
+/* (!) S17 - the `nowrap` above CLIPPED ten recap day-labels on a phone. "Day
+  - full note: docs/CSS_NOTES.md#n82 */
+@media (max-width:768px){
+  .notion-text:has(> strong > em) strong,
+  .notion-text:has(> strong > em) em,
+  .notion-text:has(> em > strong) strong,
+  .notion-text:has(> em > strong) em{
+    white-space:normal;
+  }
+}
+
+/* the section CTA - the mockup's `.cta` holding one `.btn`.
+  - full note: docs/CSS_NOTES.md#n2 */
+.notion-root > .notion-text:has(> a.notion-link:not([href^="mailto:"]):only-child):not(:has(em)),
+.notion-column-list:has(h2.notion-heading) > .notion-column > .notion-text:has(> a.notion-link:not([href^="mailto:"]):only-child):not(:has(em)),
+.notion-root > .notion-text:has(> strong:only-child > a.notion-link:only-child):not(:has(em)),
+.notion-column-list:has(h2.notion-heading) > .notion-column > .notion-text:has(> strong:only-child > a.notion-link:only-child):not(:has(em)){
+  display:flex !important; flex-wrap:wrap; gap:12px; margin:30px 0 0 !important;
+}
+.notion-root > .notion-text:has(> a.notion-link:not([href^="mailto:"]):only-child):not(:has(em)) > a.notion-link,
+.notion-column-list:has(h2.notion-heading) > .notion-column > .notion-text:has(> a.notion-link:not([href^="mailto:"]):only-child):not(:has(em)) > a.notion-link,
+.notion-root > .notion-text:has(> strong:only-child > a.notion-link:only-child):not(:has(em)) > strong > a.notion-link,
+.notion-column-list:has(h2.notion-heading) > .notion-column > .notion-text:has(> strong:only-child > a.notion-link:only-child):not(:has(em)) > strong > a.notion-link{
+  display:inline-block;
+  font-size:12.5px !important; font-weight:600 !important;
+  letter-spacing:.14em; text-transform:uppercase;
+  text-decoration:none !important;
+  padding:14px 26px !important;
+  border:1px solid rgba(230,213,183,.4);
+  color:#EBDCC4 !important;
+  background:none !important;
+  transition:background .18s var(--grc-tempo),color .18s var(--grc-tempo),border-color .18s var(--grc-tempo);
+}
+.notion-root > .notion-text:has(> a.notion-link:not([href^="mailto:"]):only-child):not(:has(em)) > a.notion-link:hover,
+.notion-column-list:has(h2.notion-heading) > .notion-column > .notion-text:has(> a.notion-link:not([href^="mailto:"]):only-child):not(:has(em)) > a.notion-link:hover{
+  border-color:var(--grc-gold); color:var(--grc-gold-lt) !important;
+}
+/* the `strong` that carried the solid marker must not also embolden the label */
+.notion-root > .notion-text:has(> strong:only-child > a.notion-link:only-child) > strong,
+.notion-column-list:has(h2.notion-heading) > .notion-column > .notion-text:has(> strong:only-child > a.notion-link:only-child) > strong{
+  font-weight:inherit !important;
+}
+/* `.btn-solid` - the sponsorship asks. Bold is the marker. */
+.notion-root > .notion-text:has(> strong:only-child > a.notion-link:only-child):not(:has(em)) > strong > a.notion-link,
+.notion-column-list:has(h2.notion-heading) > .notion-column > .notion-text:has(> strong:only-child > a.notion-link:only-child):not(:has(em)) > strong > a.notion-link{
+  background:var(--grc-gold) !important;
+  border-color:var(--grc-gold) !important;
+  color:#241505 !important;
+}
+.notion-root > .notion-text:has(> strong:only-child > a.notion-link:only-child):not(:has(em)) > strong > a.notion-link:hover,
+.notion-column-list:has(h2.notion-heading) > .notion-column > .notion-text:has(> strong:only-child > a.notion-link:only-child):not(:has(em)) > strong > a.notion-link:hover{
+  background:var(--grc-gold-lt) !important; color:#241505 !important;
+}
+
+/* -- TYPE SCALE - the mockup's, measured (S11) --
+   Lane: "not formatted and/or stylized as it is in the mockups... fonts, font
+   weights and sizes".
+  - full note: docs/CSS_NOTES.md#n3 */
+.notion-root h2.notion-heading{
+  font-size:clamp(26px,3.3vw,38px) !important;
+  letter-spacing:-.01em;
+  line-height:1.1 !important;
+}
+.notion-column h3.notion-heading{ font-size:21px !important; }
+.notion-root, .notion-root .notion-text{
+  font-size:17px;
+  line-height:1.65;
+}
+/* (!) BODY FACE - Lane's call, S11: the mockup's `--ui` (the system stack, SF Pro
+  - full note: docs/CSS_NOTES.md#n83 */
+.notion-root, .notion-root .notion-text, .notion-root li,
+.notion-root td, .notion-root figcaption, .notion-root blockquote cite{
+  font-family:var(--grc-ui);
+}
+.notion-root h1.notion-heading, .notion-root h2.notion-heading,
+.notion-root h3.notion-heading, .notion-root blockquote{
+  font-family:var(--grc-display) !important;
+}
+
+/* -- content width: match the mockup's measure --
+  - full note: docs/CSS_NOTES.md#n58 */
+.notion-root.max-width, .super-content .notion-root{
+  max-width:1140px !important;
+  width:100% !important;
+  padding-inline:clamp(20px,5vw,60px) !important;
+}
+
+/* -- photographs: the mockup's crops, ported --
+   Notion emits a bare <img> at its natural ratio, which is nothing like the
+   prototype: there, every photo in a card or a gallery is cropped to 4:3 and
+   toned back so the type stays the loudest thing on the page. These are
+   build_prototype.py's `.card img` and `.gal img` rules, re-pointed at Super's
+   `.notion-image` wrapper.
+  - full note: docs/CSS_NOTES.md#n4 */
+
+.notion-image img{ width:100% !important; transition:filter .18s var(--grc-tempo), border-color .18s var(--grc-tempo); }
+
+/* the mockup's `.card-b{padding:22px 22px 26px; gap:11px}` - a card body is
+  - full note: docs/CSS_NOTES.md#n138 */
+.notion-column-list:has(h3.notion-heading) > .notion-column{
+  padding:22px 22px 26px !important;
+}
+/* card media - `.card img`, bled out to the card edges over the column padding.
+  - full note: docs/CSS_NOTES.md#n88 */
+.notion-column > .notion-image:first-child{
+  margin:-22px -22px 22px !important;
+  width:auto !important;
+  /* ...and `max-width:none`, or the bleed silently does nothing.
+  - full note: docs/CSS_NOTES.md#n28 */
+  max-width:none !important;
+}
+.notion-column > .notion-image:first-child img{
+  aspect-ratio:4/3; object-fit:cover !important;
+  filter:grayscale(.35) sepia(.2) brightness(.82);
+}
+.notion-column:hover > .notion-image:first-child img{ filter:none; }
+/* The eyebrow rule above keys off the card's FIRST child being text. Now that a
+  - full note: docs/CSS_NOTES.md#n139 */
+.notion-column > .notion-image + .notion-text strong{
+  display:block;
+  font-family:var(--grc-display);
+  font-size:12px; font-weight:400;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--grc-gold) !important;
+}
+
+/* galleries - a column_list holding nothing but photos is a grid, not cards.
+   Notion has no gallery block, so blocks.gallery() packages photos into
+   columns; those columns are a packaging artifact, not part of the design, so
+   they are DISSOLVED here with `display:contents`. Every photo then becomes a
+   direct cell of one auto-fill grid - which is, exactly, the prototype's flat
+   `.gal`. (gallery() deals contiguous slices so DOM order, which the grid
+   follows once the columns are gone, reads 1,2,3...)
+  - full note: docs/CSS_NOTES.md#n5 */
+.notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *){
+  display:grid !important;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr)) !important;
+  /* Defensive: the columns are dissolved below, so the container has no child
+  - full note: docs/CSS_NOTES.md#n140 */
+  width:100% !important;
+  border:0 !important; gap:12px !important; margin:26px 0 !important;
+}
+.notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *) > .notion-column{
+  display:contents !important;
+}
+.notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *) .notion-image{
+  margin:0 !important;
+}
+.notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *) img{
+  aspect-ratio:4/3; object-fit:cover !important;
+  border:1px solid var(--grc-rule);
+  filter:grayscale(.3) brightness(.86);
+}
+.notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *) img:hover{
+  filter:none; border-color:var(--grc-gold);
+}
+
+/* -- Home gallery: two focal-point nudges (S11, Lane's call) --
+   "I still see heads getting cutoff in the 'From the GRC' photo gallery - top
+   row, 3rd from left to right; bottom row last photo on right."
+  - full note: docs/CSS_NOTES.md#n6 */
+.super-content.page__index .notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *) > .notion-column:nth-child(2) > .notion-image:nth-child(1) img,
+.super-content.page__index .notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *) > .notion-column:nth-child(4) > .notion-image:nth-child(2) img{
+  object-position:50% 30% !important;
+}
+
+/* -- S19 . the grab rail - "From the GRC" is ONE LINE you can drag --
+  - full note: docs/CSS_NOTES.md#n100 */
+.grc-strip,
+.super-content.page__index .notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *){
+  display:grid !important;
+  grid-template-columns:none !important;
+  grid-auto-flow:column !important;
+  grid-auto-columns:clamp(196px,44vw,264px) !important;
+  overflow-x:auto !important;
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;
+  padding-bottom:12px !important;
+  cursor:grab;
+}
+.grc-strip .notion-image{ scroll-snap-align:start; }
+/* Dragging: kill snap mid-gesture or the strip fights the pointer, and kill the
+  - full note: docs/CSS_NOTES.md#n141 */
+/* the ledger wrapper gets the grab cursor but NOT the grid rule above - it is a
+  - full note: docs/CSS_NOTES.md#n118 */
+.notion-table__wrapper[data-grc-rail]{ cursor:grab; }
+[data-grc-drag]{ cursor:grabbing !important; scroll-snap-type:none !important; }
+[data-grc-drag] img{ filter:grayscale(.3) brightness(.86) !important; }
+
+/* The affordance. A mask on the SCROLLER is safe - the element's box does not
+  - full note: docs/CSS_NOTES.md#n101 */
+[data-grc-rail]{
+  mask-image:linear-gradient(to right,transparent 0,#000 var(--fl,0px),#000 calc(100% - var(--fr,0px)),transparent 100%);
+}
+[data-grc-rail="start"]{ --fr:40px; }
+[data-grc-rail="mid"]{ --fl:34px; --fr:34px; }
+[data-grc-rail="end"]{ --fl:40px; }
+/* Thin, gold, and actually visible - the scrollbar IS half the affordance. */
+.grc-strip::-webkit-scrollbar{ height:3px; }
+.grc-strip::-webkit-scrollbar-thumb{ background:var(--grc-gold); }
+
+/* -- Folds of Honor block (mockup HOME-09) --
+   Lane, S11: "Where is the folds of honor logo setup on the homepage?" It had
+   never been built - Home shipped a bare h2 and a paragraph where the mockup
+   has the charity's reversed lockup and a gold "$3,000+" beside a lede.
+  - full note: docs/CSS_NOTES.md#n7 */
+.notion-root > .notion-column-list:has(h2.notion-heading){
+  border:0 !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) !important;
+  gap:clamp(26px,5vw,68px) !important;
+  margin:26px 0 40px !important;
+}
+.notion-root > .notion-column-list:has(h2.notion-heading) > .notion-column{
+  border-left:0 !important; padding:0 !important;
+}
+/* the RIGHT column is the mockup's `.lede` - and it is not body copy.
+  - full note: docs/CSS_NOTES.md#n39 */
+.notion-root > .notion-column-list:has(h2.notion-heading) > .notion-column:last-child{
+  display:flex !important; flex-direction:column; gap:17px;
+  max-width:64ch;
+}
+.notion-root > .notion-column-list:has(h2.notion-heading) > .notion-column:last-child > .notion-text{
+  font-size:clamp(17px,1.5vw,19.5px) !important;
+  color:var(--grc-sand) !important;
+  line-height:1.65;          /* mockup `.lede`; this was 1.55 (S13 sweep) */
+  margin:0 !important;
+}
+.notion-root > .notion-column-list:has(h2.notion-heading) > .notion-column:last-child > .notion-text strong{
+  color:var(--grc-cream) !important; font-weight:600;
+}
+/*  S13 - THE FOLDS MARK UNDER THE GIVE-02 HEADLINE (Lane). A departure: the
+  - full note: docs/CSS_NOTES.md#n59 */
+.super-content.page__giving
+  .notion-root > .notion-column-list:has(h2.notion-heading)
+  > .notion-column:first-child .notion-image{
+  margin:26px 0 0 !important;
+}
+.super-content.page__giving
+  .notion-root > .notion-column-list:has(h2.notion-heading)
+  > .notion-column:first-child .notion-image img{
+  width:min(420px,100%) !important; max-width:none !important;
+  height:auto !important; aspect-ratio:auto !important;
+  object-fit:contain !important;
+  filter:none !important; border:0 !important; border-radius:0 !important;
+  margin:0 !important; display:block !important;
+}
+/* the caption is the alt-text carrier only (Super derives <img alt> from it),
+  - full note: docs/CSS_NOTES.md#n151 */
+.super-content.page__giving
+  .notion-root > .notion-column-list:has(h2.notion-heading)
+  > .notion-column:first-child figcaption{
+  position:absolute !important; width:1px !important; height:1px !important;
+  overflow:hidden; clip-path:inset(50%); white-space:nowrap;
+  background:none !important; box-shadow:none !important; border-radius:0 !important;
+}
+
+/* the CTA sits inside that column; the mockup gives `.cta` margin-top:30px and
+  - full note: docs/CSS_NOTES.md#n152 */
+.notion-root > .notion-column-list:has(h2.notion-heading) > .notion-column:last-child > .notion-text:has(a.notion-link){
+  margin-top:13px !important;
+}
+/* the lockup - the mockup's `.foh-logo`, on its own reversed artwork.
+   Folds of Honor's official white-on-transparent variant: do NOT recolor it,
+   and do not let the gallery/feature filters tone it.
+
+   (!) S14 - the wrapper was wearing the CARD-MEDIA bleed (seventh signature
+   collision), so it had to be un-bled before any of Lane's three notes could
+   be answered.
+  - full note: docs/CSS_NOTES.md#n17 */
+.super-content.page__index
+  .notion-root > .notion-column-list:has(.notion-image):has(h2.notion-heading)
+  > .notion-column:first-child > .notion-image{
+  margin:0 0 6px !important;
+  width:auto !important; max-width:100% !important;
+  align-items:center !important;   /* Notion ships `align-start`; Lane wants it centred */
+}
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h2.notion-heading) .notion-image img{
+  /* Lane, S14: "make the Folds of Honor logo larger and centered in the area it
+  - full note: docs/CSS_NOTES.md#n60 */
+  width:clamp(240px,30vw,360px) !important;
+  height:auto !important; aspect-ratio:auto !important;
+  object-fit:contain !important;
+  filter:none !important; border:0 !important;
+  margin:6px 0 26px !important;
+}
+/* the caption exists ONLY to give the logo a real alt attribute (Super renders
+  - full note: docs/CSS_NOTES.md#n89 */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h2.notion-heading) figcaption{
+  position:absolute; width:1px; height:1px;
+  overflow:hidden; clip-path:inset(50%); white-space:nowrap;
+}
+/* "$3,000+" - the mockup sets it gold at clamp(40px,6vw,68px).
+  - full note: docs/CSS_NOTES.md#n94 */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h2.notion-heading) h2.notion-heading{
+  color:var(--grc-gold) !important;
+  font-size:clamp(40px,6vw,68px) !important;
+  line-height:1 !important; margin:0 !important;
+  /* Lane, S14: "center the $3,000+ under the FoH logo". The h2 is align-self:
+  - full note: docs/CSS_NOTES.md#n90 */
+  text-align:center !important;
+}
+/* Lane, S14: "take the copy on the right and put it in the vertical center of
+  - full note: docs/CSS_NOTES.md#n61 */
+.super-content.page__index
+  .notion-root > .notion-column-list:has(.notion-image):has(h2.notion-heading)
+  > .notion-column:last-child{
+  justify-content:center !important;
+}
+@media (max-width:860px){
+  .notion-root > .notion-column-list:has(h2.notion-heading){
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* feature photos: full width, toned, natural shape */
+.notion-root > .notion-image img{ filter:grayscale(.3) brightness(.86); }
+.notion-root > .notion-image img:hover{ filter:none; }
+
+/* ==
+   TOP OF PAGE - the mockup's `.hero` (Home) and `.phead` (inner)
+   ==
+   Super stacks the cover and the title as SIBLINGS, vertically:
+  - full note: docs/CSS_NOTES.md#n8 */
+
+.notion-header.page{
+  display:grid !important;
+  grid-template-columns:1fr;
+  position:relative; isolation:isolate;
+  overflow:hidden;
+  margin-bottom:0 !important;
+}
+.notion-header.page > .notion-header__cover,
+.notion-header.page > .notion-header__content{ grid-area:1 / 1; min-width:0; }
+
+/* the photo fills the band - override Super's --header-cover-height (30vh) */
+.notion-header.page > .notion-header__cover{
+  height:100% !important; min-height:0 !important; max-height:none !important;
+  z-index:0;
+}
+.notion-header.page .notion-header__cover-image{
+  position:absolute !important; inset:0 !important;
+  width:100% !important; height:100% !important;
+  object-fit:cover !important;
+  /* (!) EVERY COVER SHOWED THE WRONG PART OF ITS PHOTOGRAPH. Super emits an
+     INLINE `object-position:center 0%` on the cover - Notion's cover-offset
+     metadata, which defaults to top-anchored. The mockup's `.hero>img` and
+     `.phead>img` set no object-position at all, so they are centred.
+  - full note: docs/CSS_NOTES.md#n9 */
+  object-position:50% 50% !important;
+}
+/*  S13, LANE: "the hero image needs to be moved up a bit so the faces are
+  - full note: docs/CSS_NOTES.md#n40 */
+.super-content.page__sponsorship .notion-header.page .notion-header__cover-image{
+  object-position:50% 75% !important;
+}
+/*  S13, LANE: "move the bottom of the hero photo up too - the bit with
+  - full note: docs/CSS_NOTES.md#n21 */
+/* the five cover crops - one rule each, per page, on purpose.
+  - full note: docs/CSS_NOTES.md#n25 */
+.super-content.page__teams .notion-header.page .notion-header__cover-image{
+  /* GRC_2020_Group - the whole field lined up. 32.3% visible; 38% => 0.257-0.580,
+  - full note: docs/CSS_NOTES.md#n142 */
+  object-position:50% 38% !important;
+}
+.super-content.page__history .notion-header.page .notion-header__cover-image{
+  /* tpc_grc - the Cup on its plinth, course behind. 29.5%; 43% => 0.303-0.598.
+  - full note: docs/CSS_NOTES.md#n143 */
+  object-position:50% 43% !important;
+}
+.super-content.page__gallery .notion-header.page .notion-header__cover-image{
+  /* cholla_2 - a different Cholla frame, so /gallery no longer twins /giving.
+  - full note: docs/CSS_NOTES.md#n144 */
+  object-position:50% 76% !important;
+}
+.super-content.page__grc-vii .notion-header.page .notion-header__cover-image{
+  /* cholla_18 stays here - it IS a GRC VII photograph, and this is GRC VII.
+  - full note: docs/CSS_NOTES.md#n145 */
+  object-position:50% 70% !important;
+}
+.super-content.page__giving .notion-header.page .notion-header__cover-image{
+  object-position:50% 72% !important;
+}
+/* the tint sits above the photo, below the type */
+.notion-header.page > .notion-header__cover::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+}
+
+/* the type rides on top, bottom-aligned, at the mockup's 1140px measure */
+.notion-header.page > .notion-header__content{
+  z-index:2; align-self:end;
+  max-width:1140px !important; width:100%;
+  margin-inline:auto !important;
+  padding-inline:clamp(20px,5vw,60px) !important;
+}
+.notion-header.page .notion-header__title-wrapper{ margin-top:0 !important; }
+
+/* -- inner pages -> `.phead` --
+  - full note: docs/CSS_NOTES.md#n95 */
+.super-content:not(.page__index) .notion-header.page > .notion-header__content{
+  padding-top:clamp(90px,13vw,150px) !important;
+  padding-bottom:clamp(40px,6vw,64px) !important;
+}
+
+/* THE BAND HEIGHT - and it decides which part of every cover photo you see.
+   The padding above is the mockup's, but the mockup's band is padding PLUS
+   content, and its `.phead` carries more than ours does: an eyebrow (18px),
+   the h1, and usually a meta line (22px) or a lede (64px). Super's header
+   renders the TITLE ALONE, so ours settled at 288px on every page where the
+   mockup ranges 357-533.
+  - full note: docs/CSS_NOTES.md#n10 */
+.super-content:not(.page__index) .notion-header.page{ min-height:357px; }   /* recaps */
+.super-content.page__sponsorship .notion-header.page{ min-height:385px; }
+.super-content.page__the-3-0-club .notion-header.page{ min-height:397px; }
+.super-content.page__the-grc .notion-header.page{ min-height:399px; }
+.super-content.page__gallery .notion-header.page{ min-height:425px; }
+.super-content.page__history .notion-header.page{ min-height:425px; }
+.super-content.page__giving .notion-header.page{ min-height:433px; }
+.super-content.page__teams .notion-header.page{ min-height:465px; }
+.super-content.page__grc-viii .notion-header.page{ min-height:505px; }
+.super-content:not(.page__index) .notion-header.page .notion-header__cover-image{
+  filter:grayscale(.8) sepia(.4) brightness(.4) contrast(1.1);
+}
+.super-content:not(.page__index) .notion-header.page > .notion-header__cover::after{
+  background:linear-gradient(180deg,rgba(30,17,9,.55),rgba(30,17,9,.88) 70%,var(--grc-ink));
+}
+.super-content:not(.page__index) .notion-header__title{
+  font-size:clamp(34px,5.6vw,62px) !important;
+  line-height:1.06 !important;
+  letter-spacing:-.012em;
+}
+
+/* -- the `.phead` LEDE - putting back the half of the band that was missing
+   (!) S14. The band above was padded to the mockup's height and left EMPTY of
+   the content it was sized for; the comment on those min-heights says so in as
+   many words. The lede was not missing from the SITE, it was one block too
+   low: Super renders the header, a body block cannot reach it, so every inner
+   page's lede landed in `.notion-root` as a Notion CALLOUT with a border and
+   an emoji. 14 of the 15 inner pages have one.
+  - full note: docs/CSS_NOTES.md#n24 */
+.super-content:not(.page__index) .notion-header.page > .notion-header__content{
+  /* bottom-anchored by the AUTO MARGIN, not by `align-self:end`.
+  - full note: docs/CSS_NOTES.md#n26 */
+  align-self:end !important;
+  margin-top:auto !important;
+  margin-bottom:0 !important;
+}
+/* -- the `.phead` EYEBROW (S15) - the half of the band S14 could not reach.
+  - full note: docs/CSS_NOTES.md#n30 */
+.super-content:not(.page__index) .notion-root > .notion-text:has(> em > strong):first-child,
+.super-content:not(.page__index) .notion-root > .notion-text:has(> strong > em):first-child{
+  display:none !important;
+}
+.super-content:not(.page__index) .notion-root > .notion-callout:nth-child(-n+2){
+  /* strip the Notion callout chrome - the mockup has a paragraph, not a note */
+  background:none !important; border:0 !important; border-radius:0 !important;
+  padding:0 !important;
+  /* ...and lift it into the band, 18px under the title as the mockup has it */
+  /* the band floor sits `padding-bottom` under the title once the content is
+  - full note: docs/CSS_NOTES.md#n62 */
+  margin:calc(18px - clamp(40px,6vw,64px) - 4px) 0 0 !important;
+  position:relative; z-index:2;
+  max-width:64ch;
+  font-size:clamp(17px,1.5vw,19.5px) !important;
+  line-height:1.65 !important;
+  color:var(--grc-sand) !important;
+}
+/* the emoji is Notion's callout affordance, not content - the mockup's lede
+  - full note: docs/CSS_NOTES.md#n125 */
+.super-content:not(.page__index) .notion-root > .notion-callout:nth-child(-n+2) > .notion-callout__icon{
+  display:none !important;
+}
+.super-content:not(.page__index) .notion-root > .notion-callout:nth-child(-n+2) > .notion-callout__content{
+  width:100% !important;
+}
+/* the block after it opens the page body proper, clear of the band */
+.super-content:not(.page__index) .notion-root > .notion-callout:nth-child(-n+2) + *{
+  margin-top:38px !important;
+}
+
+/* -- Home -> `.hero` --
+  - full note: docs/CSS_NOTES.md#n41 */
+.super-content.page__index{ position:relative; }
+.super-content.page__index > .notion-header.page{
+  position:absolute; inset:0 0 auto 0;
+  height:min(88vh,760px);
+  z-index:0; pointer-events:none;
+}
+.super-content.page__index .notion-header.page .notion-header__cover-image{
+  filter:grayscale(.62) sepia(.34) brightness(.62) contrast(1.08);
+}
+/* Two layers, as the mockup has it: the first darkens the LEFT so the copy
+  - full note: docs/CSS_NOTES.md#n128 */
+.super-content.page__index .notion-header.page > .notion-header__cover::after{
+  background:
+    linear-gradient(100deg,rgba(30,17,9,.86) 0%,rgba(30,17,9,.55) 42%,
+      rgba(30,17,9,.22) 72%,rgba(30,17,9,.34) 100%),
+    linear-gradient(178deg,rgba(30,17,9,.12) 0%,rgba(30,17,9,.30) 60%,var(--grc-ink) 100%);
+}
+/* On Home the GRC mark IS the title - the plain "Gold Rush Cup" <h1> the
+  - full note: docs/CSS_NOTES.md#n153 */
+.super-content.page__index .notion-header.page > .notion-header__content{ display:none !important; }
+
+.super-content.page__index > .notion-root{
+  position:relative; z-index:1;
+  padding-top:0 !important;
+}
+
+/* THE HERO GROUP - a two-column block: [logo . headline . meta . CTA] [numeral].
+  - full note: docs/CSS_NOTES.md#n63 */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading){
+  box-sizing:border-box;
+  min-height:min(88vh,760px);
+  display:grid !important;
+  grid-template-columns:1fr auto !important;
+  align-items:end !important;
+  gap:clamp(20px,4vw,40px) !important;
+  border:0 !important;
+  margin:0 0 clamp(30px,5vw,56px) !important;
+  padding:0 0 clamp(40px,7vw,72px) !important;
+}
+/* the hero's own columns are layout, not ledger boxes.
+  - full note: docs/CSS_NOTES.md#n42 */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) > .notion-column{
+  padding:0 !important; border:0 !important;
+  width:100% !important; max-width:none !important; flex:none !important;
+}
+/* the GRC mark. Scoped INSIDE the hero group on purpose: Home's three format
+  - full note: docs/CSS_NOTES.md#n91 */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) > .notion-column > .notion-image:first-child{
+  margin:0 0 24px !important; width:auto !important;
+}
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) > .notion-column > .notion-image:first-child img{
+  width:clamp(160px,22vw,240px) !important;
+  aspect-ratio:auto !important; object-fit:contain !important;
+  border:0 !important; filter:drop-shadow(0 3px 16px rgba(0,0,0,.5)) !important;
+}
+/* the headline - the mockup's 82px display type, not a body h1 */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) h1.notion-heading{
+  font-size:clamp(38px,7vw,82px) !important;
+  line-height:1.03 !important;
+  letter-spacing:-.015em;
+  color:var(--grc-cream) !important;
+  margin:0 !important;
+  white-space:pre-wrap;             /* honour the line break the builder sets */
+}
+/* the mockup's `.hero h1 em` - gold, and NOT italic. Notion has no colour
+  - full note: docs/CSS_NOTES.md#n146 */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) h1.notion-heading em,
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) h1.notion-heading i{
+  font-style:normal !important;
+  color:var(--grc-gold-lt) !important;
+}
+/* the meta row: the date callout, stripped back to the mockup's diamond list */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) .notion-callout{
+  background:none !important; border:0 !important; padding:0 !important;
+  margin:20px 0 0 !important;
+}
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) .notion-callout .notion-icon{ display:none !important; }
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) .notion-callout .notion-semantic-string{
+  font-family:var(--grc-display) !important;
+  font-size:13.5px !important; font-weight:400;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:#D8C7AE !important;
+}
+/* the CTAs - the mockup's solid + ghost buttons */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) .grc-cta,
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) p:last-child:has(.notion-link){
+  display:flex; flex-wrap:wrap; gap:12px; margin-top:30px !important;
+}
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) p:has(.notion-link) .notion-link{
+  display:inline-block;
+  font-size:12.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  text-decoration:none !important;
+  padding:14px 26px;
+  border:1px solid var(--grc-gold);
+  transition:background .18s var(--grc-tempo),color .18s var(--grc-tempo),border-color .18s var(--grc-tempo);
+}
+/* first = solid, second = ghost, exactly as the mockup pairs them.
+  - full note: docs/CSS_NOTES.md#n129 */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) p:has(.notion-link) .notion-link:first-of-type{
+  background:var(--grc-gold); color:#241505 !important;
+}
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) p:has(.notion-link) .notion-link:first-of-type:hover{
+  background:var(--grc-gold-lt); color:#241505 !important;
+}
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) p:has(.notion-link) .notion-link:not(:first-of-type){
+  color:#EBDCC4 !important; border-color:rgba(230,213,183,.4);
+}
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) p:has(.notion-link) .notion-link:not(:first-of-type):hover{
+  border-color:var(--grc-gold); color:var(--grc-gold-lt) !important;
+}
+/* the edition numeral - gold gradient clipped to the glyphs */
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) > .notion-column:last-child{
+  text-align:right;
+}
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) > .notion-column:last-child h1.notion-heading{
+  font-family:var(--grc-display) !important;
+  font-size:clamp(70px,12vw,158px) !important;
+  line-height:.82 !important;
+  background:linear-gradient(163deg,#F0DE95 4%,#C6A24A 38%,#7E6320 62%,#E0CE72 88%);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent !important; -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 10px rgba(0,0,0,.45));
+}
+.super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) > .notion-column:last-child .notion-text{
+  font-size:10.5px !important; letter-spacing:.3em; text-transform:uppercase;
+  color:#C7B291 !important; margin:12px 0 0 !important;
+}
+
+/* -- mobile: stack the column groups, scroll the ledger --
+  - full note: docs/CSS_NOTES.md#n147 */
+@media (max-width:700px){
+  /* stat cards (4-up) + format cards (3-up) -> a single ruled stack */
+  .notion-column-list{ display:flex !important; flex-direction:column !important; }
+  .notion-column{
+    width:100% !important;
+    border-left:0 !important;
+    border-top:1px solid var(--grc-rule);
+    padding:22px 20px 24px !important;
+  }
+  .notion-column:first-child{ border-top:0 !important; }
+  /* card media bleeds over the phone padding, not the desktop padding */
+  .notion-column > .notion-image:first-child{ margin:-22px -20px 18px !important; }
+  /* a gallery stays a grid on a phone - 2-up, not a 45-photo tower. This has to
+  - full note: docs/CSS_NOTES.md#n148 */
+  .notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *){
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+  }
+  .notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *) > .notion-column{
+    display:contents !important;
+    border-top:0 !important;
+  }
+  /* S19 . the record ledger on a phone - drop the 640px FLOOR so the thing can
+  - full note: docs/CSS_NOTES.md#n104 */
+  /* S20 - the 640px FLOOR was only ever lifted on the ledger pages, so /teams
+  - full note: docs/CSS_NOTES.md#n110 */
+  .notion-table{ min-width:0 !important; }
+  .notion-table td{ min-width:0 !important; padding:9px 7px !important; font-size:13.5px !important; }
+  .notion-table.col-header tr:first-child .notion-semantic-string{ white-space:nowrap !important; }
+  /* S24 - narrow table cells SNAP WORDS MID-WORD on a phone.
+  - full note: docs/CSS_NOTES.md#n133 */
+  .notion-table td .notion-semantic-string{word-break:normal!important;overflow-wrap:break-word!important;hyphens:auto}
+  .notion-table .notion-table__cell{padding-inline:2px!important}
+  .super-content:is(.page__index,.page__history,[class*="page__grc-"]) .notion-table .notion-semantic-string{ white-space:nowrap !important; }
+  /* S20 - :nth-child(3):nth-last-child(3) is "the middle of FIVE", so it takes
+  - full note: docs/CSS_NOTES.md#n111 */
+  .super-content:is(.page__index,.page__history,.page__teams,[class*="page__grc-"]) .notion-table.col-header td:nth-child(3):nth-last-child(3){ display:none; }
+  @media(min-width:361px){
+  .super-content:is(.page__index,.page__history,[class*="page__grc-"]) .notion-table.col-header td:last-child .notion-semantic-string{ white-space:normal !important; }
+  }
+  .super-content:is(.page__index,.page__history,[class*="page__grc-"]) .notion-table.col-header tr:not(:first-child) td:first-child{ font-size:17px !important; }
+  .super-content:is(.page__index,.page__history,[class*="page__grc-"]) .notion-table.col-header tr:first-child td{ font-size:9.5px !important; letter-spacing:.1em !important; }
+  /* S21 - the sponsor tiles become a 2-up horizontal RAIL on a phone
+  - full note: docs/CSS_NOTES.md#n112 */
+  .super-content.page__sponsorship .notion-column-list.notion-column-list:has(figcaption){
+    display:grid !important; grid-template-columns:none !important;
+    grid-auto-flow:column !important; grid-auto-columns:clamp(150px,44vw,200px) !important;
+    overflow-x:auto !important; scroll-snap-type:x proximity; padding-bottom:12px !important;
+  }
+  .super-content.page__sponsorship .notion-column-list.notion-column-list:has(figcaption)>.notion-column.notion-column{ display:contents !important; }
+  .super-content.page__sponsorship .notion-column-list:has(figcaption) .notion-image{ scroll-snap-align:start; }
+  /* S24 - the sponsor rail hid 1,680px with none of Home's affordances.
+  - full note: docs/CSS_NOTES.md#n134 */
+  .super-content.page__sponsorship .notion-column-list:has(figcaption){cursor:grab;mask-image:linear-gradient(to right,#000 calc(100% - 38px),transparent 100%)}
+
+  /* the hero stacks - mockup: `.hero-in{grid-template-columns:1fr}` and the
+  - full note: docs/CSS_NOTES.md#n122 */
+  .super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading){
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    align-content:end;
+  }
+  .super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) > .notion-column{
+    border-top:0 !important;
+  }
+  .super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading) > .notion-column:last-child{
+    text-align:left;
+  }
+}
+
+/* -- format cards -> the mockup's `.cards` --
+  - full note: docs/CSS_NOTES.md#n64 */
+.notion-root > .notion-column-list:has(.notion-image):has(h3.notion-heading){
+  border:0 !important;
+  display:grid !important;
+  grid-template-columns:repeat(3,1fr) !important;
+  gap:22px !important;
+}
+.notion-root > .notion-column-list:has(.notion-image):has(h3.notion-heading) > .notion-column{
+  border:1px solid var(--grc-rule) !important;
+  width:auto !important; max-width:none !important; margin:0 !important;
+}
+/* Mockup: `@media(max-width:860px){.cards{grid-template-columns:1fr}}`. This
+  - full note: docs/CSS_NOTES.md#n65 */
+@media (max-width:860px){
+  .notion-root > .notion-column-list:has(.notion-image):has(h3.notion-heading){
+    grid-template-columns:1fr !important;
+  }
+}
+@media (max-width:700px){
+  .notion-column{ flex:none !important; width:100% !important; }
+}
+
+/* -- Teams -> the mockup's `.teams` / `.team` --
+  - full note: docs/CSS_NOTES.md#n35 */
+.super-content.page__teams
+  .notion-root > .notion-column-list:has(.notion-image):has(h3.notion-heading){
+  gap:26px !important;
+}
+.super-content.page__teams
+  .notion-column > .notion-image:first-child img{
+  aspect-ratio:16/9 !important;
+  filter:grayscale(.4) sepia(.2) brightness(.78);
+}
+/* The 2027 third side - no name or photo yet. The mockup draws it as a
+  - full note: docs/CSS_NOTES.md#n92 */
+.super-content.page__teams
+  .notion-root > .notion-column-list:has(h3.notion-heading)
+  > .notion-column:not(:has(.notion-image)){
+  border-style:dashed !important;
+  border-color:rgba(198,162,74,.45) !important;
+  padding-top:0 !important;
+}
+.super-content.page__teams
+  .notion-root > .notion-column-list:has(h3.notion-heading)
+  > .notion-column:not(:has(.notion-image))::before{
+  content:"3";
+  display:flex; align-items:center; justify-content:center;
+  aspect-ratio:16/9; margin:0 -24px 22px;
+  border-bottom:1px solid var(--grc-rule);
+  background:repeating-linear-gradient(135deg,transparent 0 10px,
+    rgba(198,162,74,.05) 10px 20px);
+  font-family:var(--grc-display); font-size:52px; line-height:1;
+  color:rgba(198,162,74,.3);
+}
+
+/* -- Giving -> the mockup's `.cause-grid` (GIVE-03) --
+   Two bordered cards: the current beneficiary, and a dashed "empty" card
+   holding a place for a second cause. We were rendering the second card's
+   TITLE as a full-width 38px `h2` section headline - a card title wearing
+   section size, the same shape as the S11 type-scale finding.
+  - full note: docs/CSS_NOTES.md#n11 */
+.super-content.page__giving
+  .notion-root > .notion-column-list:has(.notion-image):has(h3.notion-heading){
+  display:block !important;
+  /* S13, Lane: "remove the gold box around the Folds logo at the bottom of the
+  - full note: docs/CSS_NOTES.md#n96 */
+  border:0 !important;
+  padding:0 0 34px !important;
+  text-align:center;
+}
+.super-content.page__giving
+  .notion-root > .notion-column-list:has(h3.notion-heading) > .notion-column{
+  width:100% !important;            /* Notion gives every column a % width, and
+  - full note: docs/CSS_NOTES.md#n154 */
+  border:0 !important; padding:0 !important; margin:0 !important;
+}
+.super-content.page__giving
+  .notion-root > .notion-column-list:has(h3.notion-heading) > .notion-column > .notion-text{
+  max-width:62ch; margin-inline:auto !important;
+}
+/* mockup `.cause-b h3` is 22px where `.card h3` is 21px - a real 1px
+  - full note: docs/CSS_NOTES.md#n155 */
+.super-content.page__giving .notion-column h3.notion-heading{ font-size:22px !important; }
+
+/* (!) Card one's mark is a LOGO, not a course photograph. Left alone it
+  - full note: docs/CSS_NOTES.md#n97 */
+.super-content.page__giving
+  .notion-root > .notion-column-list:has(h3.notion-heading)
+  > .notion-column > .notion-image:first-child img{
+  aspect-ratio:auto !important;
+  object-fit:contain !important;
+  filter:none !important;
+  /* (!) S14, Lane: "remove the gold box around this logo on the giving page."
+  - full note: docs/CSS_NOTES.md#n31 */
+  border:0 !important;
+  /* S13, Lane: logo "larger and centered in the upper half" of the card. Was
+  - full note: docs/CSS_NOTES.md#n114 */
+  width:min(380px,52%) !important;
+  max-width:none !important;
+  margin:52px auto 30px !important;
+  display:block !important;
+}
+/* (!) AND kill the COURSE BADGE on this page. The `.card-band` gradient and the
+  - full note: docs/CSS_NOTES.md#n45 */
+.super-content.page__giving
+  .notion-root > .notion-column-list:has(h3.notion-heading)
+  > .notion-column > .notion-image:first-child::after{
+  content:none !important;
+}
+.super-content.page__giving
+  .notion-root > .notion-column-list:has(h3.notion-heading)
+  > .notion-column > .notion-image:first-child figcaption{
+  position:absolute !important;
+  width:1px !important; height:1px !important;
+  overflow:hidden; clip-path:inset(50%);
+  background:none !important; box-shadow:none !important; border-radius:0 !important;
+}
+/* (!) THE `.cause-empty` RULE IS DELETED, NOT DISABLED. It drew the dashed
+  - full note: docs/CSS_NOTES.md#n66 */
+
+/* the course badge - the mockup's `.card-band` + `.card-num`.
+  - full note: docs/CSS_NOTES.md#n67 */
+.notion-root > .notion-column-list:has(h3.notion-heading) > .notion-column > .notion-image:first-child{
+  position:relative;
+}
+/* `.card-band` - the gradient the numeral sits on */
+.notion-root > .notion-column-list:has(h3.notion-heading) > .notion-column > .notion-image:first-child::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:10.4%; z-index:3;
+  background:linear-gradient(180deg,rgba(30,17,9,.55),rgba(30,17,9,.92));
+  pointer-events:none;
+}
+/* `.card-num` - the caption, restyled into the gold disc */
+.notion-root > .notion-column-list:has(h3.notion-heading) > .notion-column > .notion-image:first-child figcaption{
+  position:absolute; left:50%; bottom:5%; transform:translateX(-50%);
+  width:14%; aspect-ratio:1; border-radius:50%;
+  background:linear-gradient(160deg,#E0CE72,#C6A24A 55%,#9C7C2E);
+  color:#241505 !important;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--grc-display) !important;
+  font-size:clamp(15px,2.1vw,20px) !important; line-height:1 !important;
+  z-index:4; pointer-events:none;
+  box-shadow:0 2px 8px rgba(0,0,0,.5);
+  margin:0 !important; padding:0 !important;
+  /* Keep the disc round no matter what the caption says. `aspect-ratio` only
+  - full note: docs/CSS_NOTES.md#n115 */
+  overflow:hidden; white-space:nowrap;
+}
+
+/* -- `.bleed` - a pull-quote over a full-bleed photo band --
+   The mockup's HOME-04 / TOPIC-03. NOT a photo with a caption: a quote set
+   over a darkened, full-viewport-width band.
+  - full note: docs/CSS_NOTES.md#n12 */
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote){
+  position:relative; isolation:isolate; overflow:hidden;
+  min-height:min(62vh,540px);
+  display:flex !important; align-items:center !important;
+  border:0 !important; gap:0 !important; padding:0 !important;
+  /* break the 1140px measure and run edge to edge */
+  width:100vw !important; max-width:100vw !important;
+  margin:clamp(30px,5vw,56px) calc(50% - 50vw) !important;
+}
+/* `100vw` counts the scrollbar but the centred `.notion-root` does not, so the
+  - full note: docs/CSS_NOTES.md#n46 */
+.super-root{ overflow-x:clip; }
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote) > .notion-column{
+  padding:0 !important; border:0 !important; margin:0 !important;
+}
+/* The photo column becomes the backdrop - ABSOLUTE, not just z-indexed.
+  - full note: docs/CSS_NOTES.md#n93 */
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote) > .notion-column:first-child{
+  position:absolute; inset:0; z-index:0;
+  /* (!) `width:auto` is required, not tidying. Notion puts an inline
+  - full note: docs/CSS_NOTES.md#n68 */
+  width:auto !important; max-width:none !important;
+}
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote) > .notion-column:first-child .notion-image{
+  width:100% !important;
+}
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote) > .notion-column:first-child .notion-image{
+  margin:0 !important; height:100%;
+}
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote) > .notion-column:first-child img{
+  width:100% !important; height:100% !important;
+  aspect-ratio:auto !important; object-fit:cover !important;
+  border:0 !important;
+  filter:grayscale(.7) sepia(.35) brightness(.42) contrast(1.1) !important;
+}
+/* the mockup's flat scrim, above the photo and below the type */
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote)::after{
+  content:""; position:absolute; inset:0; z-index:1;
+  background:rgba(30,17,9,.42); pointer-events:none;
+}
+/* The quote rides on top, back at the 1140px measure. `flex:1` + `margin:auto`
+  - full note: docs/CSS_NOTES.md#n132 */
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote) > .notion-column:last-child{
+  position:relative; z-index:2;
+  flex:1 1 auto !important;
+  width:auto !important; max-width:1140px !important;
+  margin-inline:auto !important;
+  padding-inline:clamp(20px,5vw,60px) !important;
+}
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote) blockquote{
+  border:0 !important; margin:0 !important; padding:0 !important;
+  max-width:56ch;
+  font-family:var(--grc-display) !important;
+  font-size:clamp(24px,3.4vw,40px) !important;
+  line-height:1.25 !important;
+  color:var(--grc-cream) !important;
+  white-space:pre-wrap;              /* honour the cite's line break */
+}
+/* the cite - same italic-as-a-hook trick as the hero's gold accent */
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote) blockquote em,
+.notion-root > .notion-column-list:has(.notion-image):has(blockquote) blockquote i{
+  display:block; margin-top:20px;
+  /* (!) S13: this said `var(--primary-font)`, which is SUPER's variable and
+  - full note: docs/CSS_NOTES.md#n119 */
+  font-family:var(--grc-ui) !important;
+  font-style:normal !important;
+  font-size:11.5px !important; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--grc-gold) !important;
+}
+
+/* -- sponsor logos: `.logo-tile`, `.partners`, the marquee --
+   The mockup's `.partners`/`.partner`/`.logo-tile` (Sponsorship, SPON-04)
+   and the homepage "Past Sponsors" `.sponsor-marquee` (HOME).
+  - full note: docs/CSS_NOTES.md#n13 */
+
+/* `.partners` - the 3-up grid of partner cards */
+.super-content.page__sponsorship .notion-column-list:has(figcaption){
+  display:grid !important;
+  grid-template-columns:repeat(3,1fr) !important;
+  gap:20px !important;
+  border:0 !important;
+  margin:26px 0 !important;
+}
+/* `.partner` - one card, holding one or two brands side by side */
+.super-content.page__sponsorship .notion-column-list:has(figcaption) > .notion-column{
+  display:flex !important; flex-direction:row !important;
+  gap:12px !important;
+  padding:0 !important; border-left:0 !important;
+}
+/* `.logo-tile` - the light tile every dark brand mark sits on.
+   (!) S22 - TWO ARMS: the marquee is a tile VARIANT that used to inherit it by
+   accident, from a rule that was not scoped.
+  - full note: docs/CSS_NOTES.md#n124 */
+/* (!) Routed through `> .notion-column >` on purpose, and it is not cosmetic.
+  - full note: docs/CSS_NOTES.md#n32 */
+.super-content.page__sponsorship .notion-column-list:has(figcaption) > .notion-column > .notion-image,
+.grc-marq .notion-column-list > .notion-column > .notion-image{
+  flex:1 !important; margin:0 !important;
+  background:var(--grc-cream) !important;
+  border:1px solid var(--grc-rule) !important; border-radius:8px !important;
+  min-height:132px;
+  display:flex !important; align-items:center; justify-content:center;
+  padding:24px 22px !important;
+  width:auto !important;
+  transition:border-color .2s var(--grc-tempo);
+}
+.super-content.page__sponsorship .notion-column-list:has(figcaption) > .notion-column > .notion-image:hover,
+.grc-marq .notion-column-list > .notion-column > .notion-image:hover{
+  border-color:var(--grc-gold) !important;
+}
+/* (!) `.notion-image img{width:100%}` (the photographs section) would stretch a
+  - full note: docs/CSS_NOTES.md#n84 */
+.super-content.page__sponsorship .notion-column-list:has(figcaption) > .notion-column > .notion-image img,
+.grc-marq .notion-column-list > .notion-column > .notion-image img{
+  width:auto !important; max-width:84% !important; max-height:64px !important;
+  object-fit:contain !important;
+  aspect-ratio:auto !important;
+  filter:none !important; border:0 !important;
+  border-radius:0 !important;
+  margin:0 !important;
+  cursor:default !important;          /* not zoomable - see super-body.html */
+}
+/* -- S22 . the OTHER 20 tap targets - WCAG 2.2 SC 2.5.8 --
+  - full note: docs/CSS_NOTES.md#n130 */
+.notion-column-list:not(:has(h2.notion-heading)) > .notion-column > .notion-text:last-child > strong > a.notion-link{
+  padding-block:6px;
+}
+
+/* (!) S11 - THIS RULE ATE THE COURSE BADGES, and it is the FOURTH instance of
+  - full note: docs/CSS_NOTES.md#n22 */
+/* (!) S22 - THREE scopes, two covered by accident before; the gallery arm is
+   the alt-text plan's step 3 - CLIP, never `display:none`.
+  - full note: docs/CSS_NOTES.md#n123 */
+.super-content.page__sponsorship .notion-column-list:has(figcaption) figcaption,
+.grc-marq figcaption,
+.notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)):not(.grc-marq *,.page__sponsorship *) figcaption{
+  position:absolute; width:1px; height:1px;
+  overflow:hidden; clip-path:inset(50%); white-space:nowrap;
+}
+@media (max-width:900px){
+  .super-content.page__sponsorship .notion-column-list:has(figcaption){ grid-template-columns:repeat(2,1fr) !important; }
+}
+/* S19 . the partner grid went 1-up here, which is a 1,348px tower of logos on a
+  - full note: docs/CSS_NOTES.md#n107 */
+@media (max-width:560px){
+  .super-content.page__sponsorship .notion-column-list:has(figcaption){ grid-template-columns:repeat(2,1fr) !important; }
+  .super-content.page__sponsorship .notion-column-list:has(figcaption) > .notion-column:has(.notion-image + .notion-image){ grid-column:span 2; }
+}
+
+/* the homepage "Past Sponsors" marquee.
+  - full note: docs/CSS_NOTES.md#n47 */
+.grc-marq{
+  overflow:hidden; margin:26px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+/* (!) NOT `gap` - the loop has to be seamless, and gap makes it 7px off.
+  - full note: docs/CSS_NOTES.md#n33 */
+.grc-marq .notion-column-list{
+  display:flex !important; width:max-content !important;
+  /* (!) S16 - `flex-direction` and `flex-wrap` are NOT tidying. Super stacks
+  - full note: docs/CSS_NOTES.md#n43 */
+  flex-direction:row !important; flex-wrap:nowrap !important;
+  border:0 !important;
+  gap:0 !important; margin:0 !important;
+  animation:grc-sponsor-marq 50s linear infinite;
+}
+.grc-marq .notion-column-list > .notion-column{ display:contents !important; }
+.grc-marq .notion-column-list > .notion-column > .notion-image{
+  flex:0 0 auto !important; width:168px !important; min-height:80px;
+  padding:15px 18px !important;
+  margin-right:14px !important;   /* the seam spacing - see the note above */
+}
+.grc-marq .notion-column-list > .notion-column > .notion-image img{ max-height:38px !important; }
+@keyframes grc-sponsor-marq{ to{ transform:translateX(-50%); } }
+.grc-marq:hover .notion-column-list{ animation-play-state:paused; }
+@media (prefers-reduced-motion:reduce){
+  .grc-marq{ overflow-x:auto; }
+  /* (!) `wrap` here was the same bug in waiting: with `width:max-content` a
+  - full note: docs/CSS_NOTES.md#n69 */
+  .grc-marq .notion-column-list{ animation:none; flex-wrap:nowrap; }
+}
+
+/* -- Gallery -> the mockup's `.films` --
+   GAL-03, "Four films, two Cups." The four videos had never been rendered
+   anywhere on the site; see draft_gallery.py.
+  - full note: docs/CSS_NOTES.md#n14 */
+.notion-column-list:has(video){
+  display:grid !important;
+  grid-template-columns:repeat(2,1fr) !important;
+  gap:24px !important;
+  border:0 !important;
+  margin:26px 0 !important;
+  align-items:stretch !important;   /* both columns to the tallest - see below */
+}
+.notion-column-list:has(video) > .notion-column{
+  padding:0 !important; border-left:0 !important;
+  display:flex !important; flex-direction:column;
+  gap:24px;                      /* the films stacked WITHIN a column */
+}
+/* `.film` - one bordered card.
+  - full note: docs/CSS_NOTES.md#n48 */
+.notion-column-list:has(video) .notion-video{
+  margin:0 !important;
+  border:1px solid var(--grc-rule);
+  display:flex; flex-direction:column;
+  flex:1 1 0 !important;
+}
+.notion-column-list:has(video) .notion-video__content{ line-height:0; }
+.notion-column-list:has(video) video{
+  width:100% !important; height:auto !important;
+  aspect-ratio:16/9; object-fit:cover;
+  background:#120A04; display:block;
+}
+/* the caption carries the mockup's title, blurb and meta line in one string */
+.notion-column-list:has(video) figcaption{
+  padding:18px 20px 20px !important;
+  font-size:14.5px; line-height:1.55;
+  color:var(--grc-sand) !important;
+  text-align:left !important;
+}
+@media (max-width:860px){
+  .notion-column-list:has(video){ grid-template-columns:1fr !important; }
+}
+
+/* -- GRC VIII course photos: one shared box --
+  - full note: docs/CSS_NOTES.md#n27 */
+.super-content.page__grc-viii .notion-root > .notion-image img{
+  /* Lane, S13, after seeing 16/9: "reducing the vertical size of the course
+  - full note: docs/CSS_NOTES.md#n70 */
+  aspect-ratio:2.9 !important;
+  height:auto !important;
+  object-fit:cover !important;
+}
+/* Home carries the same three course photos and had the same mismatch. Lane,
+  - full note: docs/CSS_NOTES.md#n23 */
+.super-content.page__index
+  .notion-root > .notion-column-list:has(h3.notion-heading)
+  > .notion-column > .notion-image:first-child img{
+  aspect-ratio:16/9 !important;
+  object-fit:cover !important;
+}
+/* -- lightbox --
+   The mockup's click-to-zoom, unbuilt since S5. Markup + behaviour are in
+   `super-body.html`; this is only the skin.
+  - full note: docs/CSS_NOTES.md#n15 */
+/* (!) S13 - THE CURSOR IS THE AFFORDANCE, AND IT HAD TO MOVE WITH THE BEHAVIOUR.
+  - full note: docs/CSS_NOTES.md#n36 */
+.super-content.page__gallery .notion-root .notion-image img{ cursor:zoom-in; }
+
+/* -- GAL-05 credits - the colophon voice, not body copy (S17, board 4) --
+  - full note: docs/CSS_NOTES.md#n85 */
+.super-content.page__gallery .notion-root > .notion-text:has(> strong:first-child):not(:has(em)){
+  font-size:13.5px !important; line-height:1.5;
+  color:var(--grc-sand) !important;
+  margin:0 0 15px !important;
+}
+.super-content.page__gallery .notion-root > .notion-text:has(> strong:first-child):not(:has(em)) > strong{
+  display:block;
+  font-size:11.5px; font-weight:400;
+  letter-spacing:.11em; text-transform:uppercase;
+  color:#978169 !important;
+  margin-bottom:2px;
+}
+/* chrome, not photographs - the hero mark, the bleed backdrop, the covers */
+.notion-column-list:has(h1.notion-heading) .notion-image img,
+.notion-column-list:has(blockquote) .notion-image img,
+.notion-header__cover img,
+.grc-footer img{ cursor:default; }
+
+#grc-lightbox{
+  position:fixed; inset:0; z-index:120; display:none;
+  background:rgba(15,9,4,.95); cursor:zoom-out;
+}
+#grc-lightbox.on{ display:grid; place-items:center; }
+#grc-lightbox img{
+  max-width:94vw; max-height:90vh; width:auto; height:auto;
+  aspect-ratio:auto !important; object-fit:contain !important;
+  filter:none !important; cursor:default;
+  border:1px solid var(--grc-rule);
+  box-shadow:0 24px 70px rgba(0,0,0,.6);
+}
+#grc-lightbox .lb-x{
+  position:fixed; top:12px; right:18px; width:46px; height:46px;
+  font:300 34px/1 ui-sans-serif,sans-serif; color:var(--grc-cream);
+  background:none; border:0; cursor:pointer; opacity:.82;
+}
+#grc-lightbox .lb-x:hover{ opacity:1; color:var(--grc-gold); }
+#grc-lightbox .lb-hint{
+  position:fixed; bottom:16px; left:0; right:0; text-align:center;
+  color:var(--grc-sand); font-size:12px; letter-spacing:.04em; pointer-events:none;
+}
+
+/* -- site footer --
+   Markup lives in `super-body.html` (Super -> Code -> Body), because Super
+   renders no footer of its own and a Notion block would have to be copied
+   onto all 15 pages. Class names are the mockup's; Super defines none of
+   them, so nothing collides.
+  - full note: docs/CSS_NOTES.md#n16 */
+.super-root > .grc-footer{ order:999; }
+.grc-footer{
+  /* mockup `--rule-hi`, which this had at .45 */
+  border-top:1px solid var(--grc-rule-hi);
+  background:var(--grc-surface);
+  padding-block:clamp(42px,6vw,62px) 32px;
+  /* (!) S13: this set `font-family:var(--grc-display)`, so the WHOLE footer was
+  - full note: docs/CSS_NOTES.md#n98 */
+}
+.grc-footer .fwrap{
+  max-width:1140px; margin-inline:auto;
+  padding-inline:clamp(20px,5vw,60px);
+}
+.grc-footer .fgrid{
+  display:grid; grid-template-columns:1.4fr 1fr 1fr;
+  gap:clamp(22px,4vw,46px);
+}
+.grc-footer .flogo{ width:145px; margin-bottom:14px; height:auto; display:block; }
+.grc-footer .fblurb{
+  font-size:14px; color:var(--grc-sand); max-width:34ch; margin:0; line-height:1.6;
+}
+.grc-footer h4{
+  font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--grc-gold); margin:0 0 13px; font-weight:600;
+}
+.grc-footer ul{
+  list-style:none; margin:0; padding:0;
+  display:flex; flex-direction:column; gap:8px;
+  font-size:14px; color:var(--grc-sand);
+}
+.grc-footer a{ color:var(--grc-sand); text-decoration:none; transition:color .18s var(--grc-tempo); }
+.grc-footer a:hover{ color:var(--grc-gold); }
+/* WCAG 2.2 SC 2.5.8 wants a 24px target; these render 17px and 15px.
+  - full note: docs/CSS_NOTES.md#n120 */
+.grc-footer a{ padding-block:5px; }
+.grc-footer .fnote{
+  margin-top:clamp(30px,5vw,48px); padding-top:20px;
+  border-top:1px solid var(--grc-rule);
+  display:flex; flex-wrap:wrap; gap:9px 26px; justify-content:space-between;
+  font-size:12.5px; color:#978169;
+}
+@media (max-width:760px){
+  /* (!) S16, Lane: the mobile footer "does not look right". Three children in a
+  - full note: docs/CSS_NOTES.md#n71 */
+  .grc-footer .fgrid{ grid-template-columns:1fr 1fr; align-items:start; row-gap:26px; }
+  .grc-footer .fgrid > *:first-child{ grid-row:1 / span 2; }
+}
+
+/* -- selection -- */
+::selection{ background:var(--grc-gold); color:#241505; }
+
+/* -- PHONE COMPOSITION (S16) --
+   (!) Lane, on an iPhone 17 Pro Max: the homepage was structurally sound and
+   compositionally wrong. S16's own mobile pass had checked horizontal overflow
+   and table containment across ten pages and called it clean - and it WAS
+   clean, on those questions. (*) It never asked whether anything looked good,
+   so a pass on structure got reported as a pass on mobile.
+  - full note: docs/CSS_NOTES.md#n37 */
+@media (max-width:768px){
+  /* 1 . the hero band was 715px on an 812px screen with `align-items:end`, so
+  - full note: docs/CSS_NOTES.md#n99 */
+  .super-content.page__index > .notion-header.page{ height:min(74vh,600px) !important; }
+  .super-content.page__index .notion-root > .notion-column-list:has(.notion-image):has(h1.notion-heading){
+    min-height:min(74vh,600px) !important;
+    padding-bottom:26px !important;
+  }
+  /* 2 . the stats strip stacked into four full-width rows, 438px of chart for
+  - full note: docs/CSS_NOTES.md#n72 */
+  .notion-root > .notion-column-list:has(h1.notion-heading):not(:has(.notion-image)){
+    display:grid !important; grid-template-columns:1fr 1fr !important;
+  }
+  .notion-root > .notion-column-list:has(h1.notion-heading):not(:has(.notion-image)) > .notion-column{
+    display:block !important; width:auto !important; padding:16px 14px !important;
+  }
+  /* 4 . THE INNER-PAGE BAND WAS 55-70% EMPTY PHOTOGRAPH. Its min-height is set
+  - full note: docs/CSS_NOTES.md#n73 */
+  .super-content:not(.page__index) .notion-header.page{ min-height:0 !important; }
+  /* 3 . the bleed band: `align-items:center` centres on the CROSS axis, and
+  - full note: docs/CSS_NOTES.md#n74 */
+  .notion-root > .notion-column-list:has(.notion-image):has(blockquote){
+    flex-direction:row !important;
+    min-height:min(46vh,360px) !important;
+  }
+}
+/* S25 - Super's own .link{opacity:.7} put every CTA under AA.
+  - full note: docs/CSS_NOTES.md#n156 */
+.notion-semantic-string .link{opacity:1!important}
+/* S26 - Super ends every page with 180px (mobile) / 30vh (desktop) of nothing.
+  - full note: docs/CSS_NOTES.md#n157 */
+.super-content .notion-root{padding-bottom:clamp(56px,7vh,96px)}
+

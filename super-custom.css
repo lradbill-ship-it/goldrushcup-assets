@@ -1695,3 +1695,7 @@ body{
   - full note: docs/CSS_NOTES.md#n157 */
 .super-content .notion-root{padding-bottom:clamp(56px,7vh,96px)}
 
+
+/* S25 - Super appended the font-variable mapping itself, and it stopped.
+  - full note: docs/CSS_NOTES.md#n159 */
+:root{--primary-font:var(--grc-ui);--secondary-font:var(--grc-ui)}

@@ -1698,4 +1698,4 @@ body{
 
 /* S25 - Super appended the font-variable mapping itself, and it stopped.
   - full note: docs/CSS_NOTES.md#n159 */
-:root{--primary-font:var(--grc-ui);--secondary-font:var(--grc-ui)}
+:root{--primary-font:var(--grc-ui)!important;--secondary-font:var(--grc-ui)!important}

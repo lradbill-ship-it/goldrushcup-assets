@@ -1699,3 +1699,16 @@ body{
 /* S25 - Super appended the font-variable mapping itself, and it stopped.
   - full note: docs/CSS_NOTES.md#n159 */
 :root{--primary-font:var(--grc-ui)!important;--secondary-font:var(--grc-ui)!important}
+
+/* S26 - the ledger sorts. Interactivity was the weakest Webby criterion at 2/5.
+  - full note: docs/CSS_NOTES.md#n160 */
+.grc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.notion-table.col-header tr:first-child>td[aria-sort]{cursor:pointer;-webkit-user-select:none;user-select:none;transition:color .18s var(--grc-tempo)}
+.notion-table.col-header tr:first-child>td[aria-sort] .notion-semantic-string{position:relative}
+.notion-table.col-header tr:first-child>td[aria-sort] .notion-semantic-string::after{content:"";position:absolute;left:100%;top:50%;margin:-2px 0 0 4px;width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;opacity:0;transition:opacity .18s var(--grc-tempo)}
+.notion-table.col-header tr:first-child>td[aria-sort]:hover,.notion-table.col-header tr:first-child>td[aria-sort]:focus-visible{color:var(--grc-gold)}
+.notion-table.col-header tr:first-child>td[aria-sort=none]:hover .notion-semantic-string::after,.notion-table.col-header tr:first-child>td[aria-sort=none]:focus-visible .notion-semantic-string::after{opacity:.5;border-bottom:4px solid currentColor}
+.notion-table.col-header tr:first-child>td[aria-sort=ascending] .notion-semantic-string::after{opacity:1;border-bottom:4px solid var(--grc-gold)}
+.notion-table.col-header tr:first-child>td[aria-sort=descending] .notion-semantic-string::after{opacity:1;border-top:4px solid var(--grc-gold)}
+.notion-table.col-header tr:first-child>td[aria-sort]:focus-visible{outline:2px solid var(--grc-gold);outline-offset:-2px}
+@media (prefers-reduced-motion:reduce){.notion-table.col-header tr:first-child>td[aria-sort],.notion-table.col-header tr:first-child>td[aria-sort] .notion-semantic-string::after{transition:none}}

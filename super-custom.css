@@ -1625,7 +1625,9 @@ body{
 .grc-footer .fblurb{
   font-size:14px; color:var(--grc-sand); max-width:34ch; margin:0; line-height:1.6;
 }
-.grc-footer h4{
+/* S26 - the footer headings are h2, not h4, and the level is the point.
+  - full note: docs/CSS_NOTES.md#n161 */
+.grc-footer h2{
   font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
   color:var(--grc-gold); margin:0 0 13px; font-weight:600;
 }

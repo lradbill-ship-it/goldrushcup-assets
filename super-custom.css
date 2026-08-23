@@ -1702,7 +1702,7 @@ body{
 
 /* S26 - the ledger sorts. Interactivity was the weakest Webby criterion at 2/5.
   - full note: docs/CSS_NOTES.md#n160 */
-.grc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.grc-sr{position:absolute;top:0;left:0;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .notion-table.col-header tr:first-child>td[aria-sort]{cursor:pointer;-webkit-user-select:none;user-select:none;transition:color .18s var(--grc-tempo)}
 .notion-table.col-header tr:first-child>td[aria-sort] .notion-semantic-string{position:relative}
 .notion-table.col-header tr:first-child>td[aria-sort] .notion-semantic-string::after{content:"";position:absolute;left:100%;top:50%;margin:-2px 0 0 4px;width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;opacity:0;transition:opacity .18s var(--grc-tempo)}

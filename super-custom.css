@@ -1714,3 +1714,8 @@ body{
 .notion-table.col-header tr:first-child>td[aria-sort=descending] .notion-semantic-string::after{opacity:1;border-top:4px solid var(--grc-gold)}
 .notion-table.col-header tr:first-child>td[aria-sort]:focus-visible{outline:2px solid var(--grc-gold);outline-offset:-2px}
 @media (prefers-reduced-motion:reduce){.notion-table.col-header tr:first-child>td[aria-sort],.notion-table.col-header tr:first-child>td[aria-sort] .notion-semantic-string::after{transition:none}}
+
+/* S26 - the navbar brand is the bear now, not the words.
+  - full note: docs/CSS_NOTES.md#n162 */
+.super-navbar__logo{width:30px;height:30px;background:url("https://assets.super.so/b6c52e9b-3bfc-4f1a-b5ba-2836481c287c/uploads/favicon/bac9273c-9748-4b4a-87ed-8c56a225e85d.png") left center/contain no-repeat}
+.super-navbar__logo-text{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden;clip-path:inset(50%);white-space:nowrap}

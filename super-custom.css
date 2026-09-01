@@ -1183,9 +1183,15 @@ body{
 }
 .super-content.page__teams
   .notion-column > .notion-image:first-child img{
-  /* S26 - 4:3 for LOGOS, and no photo filter. Both explained in #n35. */
+  /* S26 - 4:3 for LOGOS, and the photo filter NEUTRALISED. Both in #n35.
+     🔴 `filter:none` is REQUIRED, not tidy: deleting this rule's own filter does
+     not remove the treatment, it EXPOSES the site-wide one at #n28 (line ~584,
+     grayscale .35 / sepia .2 / brightness .82, plus a hover that clears it). */
   aspect-ratio:4/3 !important;
+  filter:none !important;
 }
+.super-content.page__teams
+  .notion-column:hover > .notion-image:first-child img{ filter:none !important; }
 /* Fallback only now: a team card that has NO image still gets a blank. Drawn as a
   - full note: docs/CSS_NOTES.md#n92 */
 .super-content.page__teams

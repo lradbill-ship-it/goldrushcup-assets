@@ -1192,6 +1192,18 @@ body{
 }
 .super-content.page__teams
   .notion-column:hover > .notion-image:first-child img{ filter:none !important; }
+/* 🔴 S26 - KILL THE `.card-band` SCRIM ON THE TEAMS CARDS. #n67 puts a
+   `::after` gradient across the bottom 10.4% of every card image so a gold
+   numeral disc can sit on it - right for the COURSE BADGES it was built for,
+   wrong for a flat team logo, where it just darkens the bottom of the mark.
+   Its selector is not page-scoped, so it had been applying here all along; it
+   was invisible over a photograph and obvious the moment a badge went in.
+   ⚠️ `content:none` rather than `background:none` - remove the box, not just
+   its paint, so nothing is left stacking at z-index 3 over the logo.
+  - full note: docs/CSS_NOTES.md#n67 */
+.super-content.page__teams
+  .notion-root > .notion-column-list:has(h3.notion-heading)
+  > .notion-column > .notion-image:first-child::after{ content:none !important; }
 /* Fallback only now: a team card that has NO image still gets a blank. Drawn as a
   - full note: docs/CSS_NOTES.md#n92 */
 .super-content.page__teams

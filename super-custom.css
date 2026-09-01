@@ -1183,10 +1183,10 @@ body{
 }
 .super-content.page__teams
   .notion-column > .notion-image:first-child img{
-  aspect-ratio:16/9 !important;
-  filter:grayscale(.4) sepia(.2) brightness(.78);
+  /* S26 - 4:3 for LOGOS, and no photo filter. Both explained in #n35. */
+  aspect-ratio:4/3 !important;
 }
-/* The 2027 third side - no name or photo yet. The mockup draws it as a
+/* Fallback only now: a team card that has NO image still gets a blank. Drawn as a
   - full note: docs/CSS_NOTES.md#n92 */
 .super-content.page__teams
   .notion-root > .notion-column-list:has(h3.notion-heading)
@@ -1198,9 +1198,9 @@ body{
 .super-content.page__teams
   .notion-root > .notion-column-list:has(h3.notion-heading)
   > .notion-column:not(:has(.notion-image))::before{
-  content:"3";
+  content:"";
   display:flex; align-items:center; justify-content:center;
-  aspect-ratio:16/9; margin:0 -24px 22px;
+  aspect-ratio:4/3; margin:0 -24px 22px;
   border-bottom:1px solid var(--grc-rule);
   background:repeating-linear-gradient(135deg,transparent 0 10px,
     rgba(198,162,74,.05) 10px 20px);

@@ -831,9 +831,9 @@ body{
 /* the five cover crops - one rule each, per page, on purpose.
   - full note: docs/CSS_NOTES.md#n25 */
 .super-content.page__teams .notion-header.page .notion-header__cover-image{
-  /* GRC_2020_Group - the whole field lined up. 32.3% visible; 38% => 0.257-0.580,
+  /* IMG_6200 - the GRC VI field, both sides lined up. 32.3% visible; 62% =>
   - full note: docs/CSS_NOTES.md#n142 */
-  object-position:50% 38% !important;
+  object-position:50% 62% !important;
 }
 .super-content.page__history .notion-header.page .notion-header__cover-image{
   /* tpc_grc - the Cup on its plinth, course behind. 29.5%; 43% => 0.303-0.598.

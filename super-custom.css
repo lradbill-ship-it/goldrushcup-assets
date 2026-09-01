@@ -1571,7 +1571,13 @@ body{
   - full note: docs/CSS_NOTES.md#n15 */
 /* (!) S13 - THE CURSOR IS THE AFFORDANCE, AND IT HAD TO MOVE WITH THE BEHAVIOUR.
   - full note: docs/CSS_NOTES.md#n36 */
-.super-content.page__gallery .notion-root .notion-image img{ cursor:zoom-in; }
+.super-content.page__gallery .notion-root .notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)) .notion-image img{ cursor:zoom-in; }
+/* (!) S27 - AND THE CUP CARDS NOW GO SOMEWHERE, so they say so.
+  - full note: docs/CSS_NOTES.md#n163 */
+.super-content.page__gallery .notion-column-list > .notion-column:has(a[href^="/grc-"]),
+.super-content.page__gallery .notion-column-list > .notion-column:has(a[href^="/grc-"]) img{
+  cursor:pointer;
+}
 
 /* -- GAL-05 credits - the colophon voice, not body copy (S17, board 4) --
   - full note: docs/CSS_NOTES.md#n85 */

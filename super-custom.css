@@ -1200,7 +1200,7 @@ body{
    was invisible over a photograph and obvious the moment a badge went in.
    ⚠️ `content:none` rather than `background:none` - remove the box, not just
    its paint, so nothing is left stacking at z-index 3 over the logo.
-  - full note: docs/CSS_NOTES.md#n67 */
+   The band itself is #n67; this only switches it off here. */
 .super-content.page__teams
   .notion-root > .notion-column-list:has(h3.notion-heading)
   > .notion-column > .notion-image:first-child::after{ content:none !important; }

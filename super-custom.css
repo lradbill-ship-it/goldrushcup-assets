@@ -890,8 +890,10 @@ body{
 .super-content.page__giving .notion-header.page{ min-height:433px; }
 .super-content.page__teams .notion-header.page{ min-height:465px; }
 .super-content.page__grc-viii .notion-header.page{ min-height:505px; }
+/* (!) S27 - THE HERO PHOTOGRAPHS WERE READING AS FLAT INK, all fifteen.
+  - full note: docs/CSS_NOTES.md#n164 */
 .super-content:not(.page__index) .notion-header.page .notion-header__cover-image{
-  filter:grayscale(.8) sepia(.4) brightness(.4) contrast(1.1);
+  filter:grayscale(.35) sepia(.2) brightness(.72) contrast(1.05);
 }
 .super-content:not(.page__index) .notion-header.page > .notion-header__cover::after{
   background:linear-gradient(180deg,rgba(30,17,9,.55),rgba(30,17,9,.88) 70%,var(--grc-ink));

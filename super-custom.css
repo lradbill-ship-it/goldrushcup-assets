@@ -831,9 +831,9 @@ body{
 /* the five cover crops - one rule each, per page, on purpose.
   - full note: docs/CSS_NOTES.md#n25 */
 .super-content.page__teams .notion-header.page .notion-header__cover-image{
-  /* IMG_6200 - the GRC VI field, both sides lined up. 32.3% visible; 62% =>
+  /* IMG_6200 - the GRC VI field, both sides lined up. 32.3% visible; 52% =>
   - full note: docs/CSS_NOTES.md#n142 */
-  object-position:50% 62% !important;
+  object-position:50% 52% !important;
 }
 .super-content.page__history .notion-header.page .notion-header__cover-image{
   /* tpc_grc - the Cup on its plinth, course behind. 29.5%; 43% => 0.303-0.598.
@@ -1573,7 +1573,7 @@ body{
   - full note: docs/CSS_NOTES.md#n15 */
 /* (!) S13 - THE CURSOR IS THE AFFORDANCE, AND IT HAD TO MOVE WITH THE BEHAVIOUR.
   - full note: docs/CSS_NOTES.md#n36 */
-.super-content.page__gallery .notion-root .notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)) .notion-image img{ cursor:zoom-in; }
+.super-content:is(.page__gallery,[class*="page__grc-"]) .notion-root .notion-column-list:not(:has(.notion-text)):not(:has(.notion-heading)):not(:has(blockquote)):not(:has(video)) .notion-image img{ cursor:zoom-in; }
 /* (!) S27 - AND THE CUP CARDS NOW GO SOMEWHERE, so they say so.
   - full note: docs/CSS_NOTES.md#n163 */
 .super-content.page__gallery .notion-column-list > .notion-column:has(a[href^="/grc-"]),
